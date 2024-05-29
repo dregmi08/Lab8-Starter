@@ -46,19 +46,19 @@ function initializeServiceWorker() {
   // sw.js is executed.
   // B1. TODO - Check if 'serviceWorker' is supported in the current browser
   if("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("sw.js", { scope:'./' }).then(
+    window.addEventListener("load", function(){
+      navigator.serviceWorker.register("sw.js").then(
         (registration) => {
           console.log("Successful completion of registration");
         },
-        (err) => {
+        (error) => {
           console.log("Registration failed");
         }
       )
     });
   }
   else {
-    console.log("Service worker registration has failed");
+    console.error("Service worker registration has failed");
   }
   // B2. TODO - Listen for the 'load' event on the window object.
   // Steps B3-B6 will be *inside* the event listener's function created in B2
@@ -85,8 +85,9 @@ async function getRecipes() {
   //            If there are recipes, return them.
 
   let localStorageItems = localStorage.getItem(recipes);
-  let parsedArray = JSON.parse(localStorageItems);
-  if(parsedArray.length != 0) {
+
+  if(localStorageItems) {
+    let parsedArray = JSON.parse(localStorageItems);
     return parsedArray;
   }
   
@@ -95,7 +96,7 @@ async function getRecipes() {
   // from the network
   // A2. TODO - Create an empty array to hold the recipes that you will fetch
 
-    let emptyArrForRecipes = {};
+    let emptyArrForRecipes = [];
 
   // A3. TODO - Return a new Promise. If you are unfamiliar with promises, MDN
   //            has a great article on them. A promise takes one parameter - A
@@ -106,12 +107,11 @@ async function getRecipes() {
    return new Promise(async (resolve,reject) => {
     for(const currRecipeLink of RECIPE_URLS) {
       try {
-        let fetchedLink = await fetch(currRecipe);
+        let fetchedLink = await fetch(currRecipeLink);
         let fetchedjsonVal = await fetchedLink.json();
         emptyArrForRecipes.push(fetchedjsonVal);
 
         if(emptyArrForRecipes.length == RECIPE_URLS.length) {
-          saveRecipesToStorage(emptyArrForRecipes);
           resolve(emptyArrForRecipes);
         }
       }
