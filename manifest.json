@@ -4,8 +4,8 @@
     "description": "Drishti's site",
     "start_url": "./index.html",
     "display": "standalone",
-    "background_color": "purple",
-    "theme_color": "pink",
+    "background_color": "#A020F0",
+    "theme_color": "#A020DD",
     "icons": [
       {
         "src": "/assets/images/icons/icon-192x192.png",
