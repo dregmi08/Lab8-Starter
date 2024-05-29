@@ -1,11 +1,11 @@
 {
-    "name": "",
-    "short_name": "",
-    "description": "",
-    "start_url": "",
-    "display": "",
-    "background_color": "",
-    "theme_color": "",
+    "name": "Lab8-Starter",
+    "short_name": "Drishti",
+    "description": "Drishti's site",
+    "start_url": "https://<username>.github.io/Lab8-Starter/.",
+    "display": "fullscreen",
+    "background_color": "purple",
+    "theme_color": "pink",
     "icons": [
       {
         "src": "/assets/images/icons/icon-192x192.png",
