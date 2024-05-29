@@ -46,7 +46,7 @@ function initializeServiceWorker() {
   // sw.js is executed.
   // B1. TODO - Check if 'serviceWorker' is supported in the current browser
   if("serviceWorker" in navigator) {
-    window.addEventListener("load", function(){
+    window.addEventListener("load", () => {
       navigator.serviceWorker.register("sw.js").then(
         (registration) => {
           console.log("Successful completion of registration");
@@ -84,7 +84,7 @@ async function getRecipes() {
   // A1. TODO - Check local storage to see if there are any recipes.
   //            If there are recipes, return them.
 
-  let localStorageItems = localStorage.getItem(recipes);
+  let localStorageItems = localStorage.getItem("recipes");
 
   if(localStorageItems) {
     let parsedArray = JSON.parse(localStorageItems);
@@ -107,8 +107,8 @@ async function getRecipes() {
    return new Promise(async (resolve,reject) => {
     for(const currRecipeLink of RECIPE_URLS) {
       try {
-        let fetchedLink = await fetch(currRecipeLink);
-        let fetchedjsonVal = await fetchedLink.json();
+        const fetchedLink = await fetch(currRecipeLink);
+        const fetchedjsonVal = await fetchedLink.json();
         emptyArrForRecipes.push(fetchedjsonVal);
 
         if(emptyArrForRecipes.length == RECIPE_URLS.length) {
