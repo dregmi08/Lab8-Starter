@@ -2,7 +2,7 @@
     "name": "Lab8-Starter",
     "short_name": "Drishti",
     "description": "Drishti's site",
-    "start_url": "https://<username>.github.io/Lab8-Starter/.",
+    "start_url": "/.",
     "display": "fullscreen",
     "background_color": "purple",
     "theme_color": "pink",
